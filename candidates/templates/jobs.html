@@ -1,0 +1,26 @@
+<html>
+<head>
+</head>
+
+<body>
+<h1>Just running a little test</h1><br><br>
+	<ul>
+	{% for position in positions %}
+		<li><a href="{% url "candidates_view" id=position.id %}" id="{{ position.name }}">{{ position.name }}</a></li>
+		<div id="{{ position.name }}content">
+			<p>{{ position.show_candidate }}</p>
+				
+		</div>
+	{% endfor %}
+		
+	</ul>
+	
+
+	
+	
+</div>
+	
+</body>
+
+
+</html>

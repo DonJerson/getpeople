@@ -17,7 +17,7 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from candidates import candidates_urls
-from .mysite import settings
+from mysite import settings
 
 
 urlpatterns = [

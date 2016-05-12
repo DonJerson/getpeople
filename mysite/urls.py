@@ -1,3 +1,4 @@
+
 """mysite URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -16,8 +17,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from candidates import candidates_urls
+from .mysite import settings
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^jobs/', include(candidates_urls))
 ]
+
+urlpatterns += patterns('',
+        (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    )

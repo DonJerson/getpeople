@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{%block title %}In call Procedure{% endblock %}
+{% block body_content %}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Call in process...</h2><br><br>
+        <p>Script goes here</p><br><br>
+        {% for logtemplate in logtemplates %}
+          <p><a class="btn btn-primary btn-lg" href="{% url 'disposition' position_id=position.id candidate_id=candidate.id logtemplate_id=logtemplate.id %}" role="button">{{ logtemplate.action }} &raquo;</a></p>
+        {% endfor %}
+      </div>
+    </div>
+
+{% endblock %}

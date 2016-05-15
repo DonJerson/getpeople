@@ -1,81 +1,44 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+{% extends 'base.html' %}
+{% block title %}Candidate's view{% endblock %}
+{% block body_content %}
 
+<div class="jumbotron">
+    <div class="container">
+		<div class="row">
+			<div class="col-md-3">
+			</div>
+			<div class="col-md-9">
+				<h2 class="cover-heading">Available candidates for: {{ position.name }} position</h2>
 
-    <title>Cover Template for Bootstrap</title>
+			</div>
+		</div>
+	</div>
+</div>
+{% for candidate in candidates %}
 
-     <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-
-
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/cover.css' %}" rel="stylesheet">
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  </head>
-
-  <body>
-
-    <div class="site-wrapper">
-
-      <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-          <div class="masthead clearfix">
-            <div class="inner">
-              <h3 class="masthead-brand">Cover</h3>
-              <nav>
-                <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
-                  <li><a href="#">Features</a></li>
-                  <li><a href="#">Contact</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-		{% for candidate in candidates %}
-          <div class="inner cover">
-            <h1 class="cover-heading">{{ candidate.name }}</h1>
-            <p class="lead">{{ candidate.email }}</p>
-            <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Click here to see history</a>
-            </p>
-          </div>
-		{% endfor %}
-
-          <div class="mastfoot">
-            <div class="inner">
-              <p>Created by Jerson</p>
-            </div>
-          </div>
-
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1">
+		</div> 
+		<div class="col-md-4">
+	    <h1>{{ candidate.name }}</h1>
+	    <p>{{ candidate.phone }}</p>
+	    <p>{{ candidate.email }}</p>
+	    <p>{{ candidate.resume }}</p>
+	    </p><br><br><br><br>
+	    
         </div>
-
+            
+        <div class="col-md-2">
+        <p class="lead"><a class="btn btn-lg btn-primary" href="{% url 'in_call' position_id=position.id candidate_id=candidate.id %}" role="button">Call this candidate &raquo;</a>
+		</p>
+		<p class="lead">
+	    <a href="#" class="btn btn-lg btn-default">Click here to see history</a>
+	    </p>
+		</div>
       </div>
-
     </div>
+  </div>
+{% endfor %}
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-
-    
-</html>
+{% endblock %}

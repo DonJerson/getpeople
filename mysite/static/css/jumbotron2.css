@@ -1,0 +1,9 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+.jumbotron2 {
+padding-top:70px;
+padding-bottom:30px;
+padding-left:100px;
+margin-bottom:20px;
+color:inherit;
+background-color:#eee}
+.jumbotron2 h1,.jumbotron2 .h1{color:inherit}.jumbotron2 p{margin-bottom:15px;font-size:21px;font-weight:200}.jumbotron2>hr{border-top-color:#d5d5d5}.container .jumbotron2,.container-fluid .jumbotron2{border-radius:6px;padding-left:15px;padding-right:15px}

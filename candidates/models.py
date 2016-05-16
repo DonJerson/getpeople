@@ -29,6 +29,10 @@ class Candidate(models.Model):
 	priority = models.IntegerField(default=0)
 	pass
 	
+	@property
+	def logs(self):
+		return self.log_set.all()
+	
 	def __unicode__(self):
 		return self.name
 		

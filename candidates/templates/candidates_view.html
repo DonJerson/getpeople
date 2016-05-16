@@ -1,44 +1,63 @@
 {% extends 'base.html' %}
+
 {% block title %}Candidate's view{% endblock %}
 {% block body_content %}
 
-<div class="jumbotron">
-    <div class="container">
-		<div class="row">
-			<div class="col-md-3">
-			</div>
-			<div class="col-md-9">
-				<h2 class="cover-heading">Available candidates for: {{ position.name }} position</h2>
+
+
+ <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main">
+          <h1 class="page-header">Available candidates for: {{ position.name }} position</h1>
+ </div>
+        {% for candidate in candidates %}
+        <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-2 main">
+
+		  <br>
+		
+          <div class="row placeholders">
+		
+            <div class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-3 placeholder">
+              <img src="http://vignette1.wikia.nocookie.net/criminal-case-grimsborough/images/2/26/Unknown_Character.png/revision/latest?cb=20141106142941" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>{{ candidate.name }}</h4>
+              <span class="text-muted">{{ candidate.phone }}</span><br>
+              <span class="text-muted">{{ candidate.email }}</span><br>
+              <span class="text-muted">{{ candidate.resume }}</span>
+            </div>
+            <div class="row">
+
+					<p><a class="btn btn-primary btn-lg" href="{% url 'in_call' position_id=position.id candidate_id=candidate.id %}" role="button">Call now! &raquo;</a></p>
 
 			</div>
-		</div>
-	</div>
-</div>
-{% for candidate in candidates %}
+          </div>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-1">
-		</div> 
-		<div class="col-md-4">
-	    <h1>{{ candidate.name }}</h1>
-	    <p>{{ candidate.phone }}</p>
-	    <p>{{ candidate.email }}</p>
-	    <p>{{ candidate.resume }}</p>
-	    </p><br><br><br><br>
-	    
+          <h2 class="sub-header">Interaction history</h2>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Action</th>
+                  <th>Recruiter's name</th>
+                  <th>Creation date</th>
+                </tr>
+              </thead>
+              <tbody>
+
+
+			{% for log in candidate.logs %}
+                <tr>
+                  <td>{{ log.action }}</td>
+                  <td>{{ log.recruiter }}</td>
+                  <td>{{ log.created }}</td>
+                </tr>
+			{% endfor %}
+
+              </tbody>
+            </table>
+          </div>
         </div>
-            
-        <div class="col-md-2">
-        <p class="lead"><a class="btn btn-lg btn-primary" href="{% url 'in_call' position_id=position.id candidate_id=candidate.id %}" role="button">Call this candidate &raquo;</a>
-		</p>
-		<p class="lead">
-	    <a href="#" class="btn btn-lg btn-default">Click here to see history</a>
-	    </p>
-		</div>
       </div>
     </div>
-  </div>
-{% endfor %}
-
+    </div>
+		{% endfor %}
 {% endblock %}
+
+

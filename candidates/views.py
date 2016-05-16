@@ -9,6 +9,7 @@ def jobs(request):
 def job_view(request, pk):
 	instance = get_object_or_404(Position, id=pk)
 	block = {
+	'positions':Position.objects.all(),
 	'instance':instance,
 	'candidates':instance.candidate_set.all()
 	}
@@ -16,8 +17,11 @@ def job_view(request, pk):
     
 def candidates_view(request, position_id):
 	instance = get_object_or_404(Position, id=position_id)
-	candidates=instance.candidate_set.all()
+	candidates=instance.candidate_set.order_by('priority')
+	
 	block = {
+
+	'positions':Position.objects.all(),
 	'candidates':candidates,
 	'position':instance
 	}
@@ -28,6 +32,7 @@ def in_call(request, position_id, candidate_id):
 	candidate = Candidate.objects.get(id=candidate_id)
 	logtemplates = LogTemplate.objects.all()
 	context = {
+	'positions':Position.objects.all(),
 	'candidate': candidate,
 	'position':position,
 	'logtemplates':logtemplates
@@ -40,11 +45,13 @@ def disposition(request, position_id, candidate_id, logtemplate_id):
 	log_template = LogTemplate.objects.get(id=logtemplate_id)
 	new_log = Log(action=log_template.action, recruiter=recruiter, candidate=candidate)
 	new_log.save()
+	candidate.priority = candidate.priority - log_template.priority_offset
 	other_object = candidate.log_set.add(new_log)
 	
 	instance = get_object_or_404(Position, id=position_id)
 	candidates=instance.candidate_set.all()
 	block = {
+	'positions':Position.objects.all(),
 	'candidates':candidates,
 	'position':instance
 	}

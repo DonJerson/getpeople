@@ -22,7 +22,7 @@ from mysite import settings
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^jobs/', include(candidates_urls))
+    url(r'^', include(candidates_urls))
 ]
 
 urlpatterns += patterns('',

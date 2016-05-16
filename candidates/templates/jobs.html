@@ -17,9 +17,11 @@
       {% for position in positions %}
       <div class="row">
         <div class="col-md-4">
-          <h2><a href="{% url 'candidates_view' position_id=position.id %}">{{ position.name }}</a></h2><br><br>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+          <h2><a href="{% url 'candidates_view' position_id=position.id %}">{{ position.name }}</a></h2><br>
+          <p>Anual Salary: {{ position.salary_anual }} </p>
+          <p>Job location: {{ position.location }} </p>
+          <p>{{ position.description }} </p>
+          <p>Required skills: {{ position.skills }} </p>
         </div>
       {% endfor %}
       

@@ -59,3 +59,10 @@ def disposition(request, position_id, candidate_id, logtemplate_id):
 	return render(request, 'candidates_view.html', block)
 	
 	
+def login_view(request):
+	title = "Login"
+	form = UserLoginForm(request.POST or None)
+	if form.is_valid():
+		username = form.cleaned_data.get("username")
+		password = form.cleaned_data.get("password")
+	return render(request, "form.html", {'form':form,'title':title})

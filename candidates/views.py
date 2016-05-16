@@ -3,7 +3,8 @@ from .models import *
 # Create your views here.
 
 def jobs(request):
-	block = {'candidates':Candidate.objects.all(), 'positions':Position.objects.all()}
+	recruiter = request.user.recruiter
+	block = {'recruiter':recruiter, 'candidates':Candidate.objects.all(), 'positions':Position.objects.all()}
 	return render(request, 'jobs.html', block)
 
 def job_view(request, pk):

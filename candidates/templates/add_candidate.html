@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{%block title %}In call Procedure{% endblock %}
+{% block body_content %}
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <form method='POST' action=''>{% csrf_token %}
+		{{ form.as_p }}
+			
+		<input type='submit' value='Add this candidate'>	
+		</form>
+      </div>
+    </div>
+
+{% endblock %}

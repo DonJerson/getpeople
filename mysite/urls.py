@@ -18,6 +18,7 @@ from django.conf.urls import include, url, patterns
 from django.contrib import admin
 from candidates import candidates_urls
 from mysite import settings
+from django.conf.urls.static import  static
 
 
 urlpatterns = [
@@ -28,3 +29,4 @@ urlpatterns = [
 urlpatterns += patterns('',
         (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
     )
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

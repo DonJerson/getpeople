@@ -24,7 +24,7 @@ class Candidate(models.Model):
 	name = models.CharField(max_length=200)
 	email = models.EmailField(max_length=150)
 	phone = models.CharField(max_length=20)
-	resume = models.TextField()
+	resume = models.FileField(upload_to="static/media")
 	position = models.ForeignKey(Position)
 	priority = models.IntegerField(default=0)
 	pass
@@ -54,6 +54,8 @@ class Recruiter(models.Model):
 class LogTemplate(models.Model):
 	action = models.CharField(max_length=100)
 	priority_offset = models.IntegerField()
+	def __unicode__(self):
+		return self.action
 	pass
 
 class Log(models.Model):
@@ -61,3 +63,5 @@ class Log(models.Model):
 	recruiter = models.ForeignKey(Recruiter)
 	candidate = models.ForeignKey(Candidate)
 	created = models.DateTimeField(auto_now_add=True)
+	def __unicode__(self):
+		return self.action

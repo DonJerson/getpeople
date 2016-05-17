@@ -2,7 +2,7 @@
 
 {% block title %}Candidate's view{% endblock %}
 {% block body_content %}
-
+{% load staticfiles %}
 
 
  <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main">
@@ -20,7 +20,7 @@
               <h4>{{ candidate.name }}</h4>
               <span class="text-muted">{{ candidate.phone }}</span><br>
               <span class="text-muted">{{ candidate.email }}</span><br>
-              <span class="text-muted">{{ candidate.resume }}</span>
+              <span class="text-muted"><a href="{{ candidate.resume.url }}">Candidate's resume</a></span>
             </div>
             <div class="row">
 

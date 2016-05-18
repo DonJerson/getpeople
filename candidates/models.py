@@ -22,8 +22,8 @@ class Position(models.Model):
 
 class Candidate(models.Model):
 	name = models.CharField(max_length=200)
-	email = models.EmailField(max_length=150)
-	phone = models.CharField(max_length=20)
+	email = models.EmailField(max_length=150, null=False, unique=True)
+	phone = models.CharField(max_length=20, null=False, unique=True)
 	resume = models.FileField(upload_to="static/media")
 	position = models.ForeignKey(Position)
 	priority = models.IntegerField(default=0)

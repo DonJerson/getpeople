@@ -2,37 +2,42 @@
 
 {% block body_content %}
 {% if user.is_authenticated %}
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+	<div class="container">
         <h1>Welcome, {{ recruiter }}!</h1>
         <p>Please choose one of the following Job Reqs to get started</p>
 <!--
         <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
 -->
-      </div>
-    </div>
+	</div>
+</div>
 
-    <div class="container">
-      <!-- Example row of columns -->
-      {% for position in positions %}
-      <div class="row">
-        <div class="col-md-4">
-          <h2><a href="{% url 'candidates_view' position_id=position.id %}">{{ position.name }}</a></h2><br>
-          <p>Anual Salary: {{ position.salary_anual }} </p>
-          <p>Job location: {{ position.location }} </p>
-          <p>{{ position.description }} </p>
-          <p>Required skills: {{ position.skills }} </p>
-        </div>
-      {% endfor %}
-      
-    </div> <!-- /container -->
+<div class="container">
+	<!-- Example row of columns -->
+
+	{% for position in positions %}
+	
+	<div class="row">
+		<div class="col-md-4">
+			<h2><a href="{% url 'candidates_view' position_id=position.id %}">{{ position.name }}</a></h2><br>
+			<p>Anual Salary: {{ position.salary_anual }} </p>
+			<p>Job location: {{ position.location }} </p>
+			<p>{{ position.description }} </p>
+			<p>Required skills: {{ position.skills }} </p>
+		</div>
+	</div>
+	{% endfor %}
+
+     <!-- /container -->
 {% else %}
-    <div class="jumbotron">
-      <div class="container">
+<div class="jumbotron">
+	<div class="container">
 		<div class="col-md-6 col-md-offset-3">
         <h1 "page-header">Please log in to continue...</h1>
         </div>
+    </div>
+</div>
 {% endif %}
 {% endblock %}
 

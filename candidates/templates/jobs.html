@@ -17,18 +17,17 @@
 	<!-- Example row of columns -->
 	<div class="row">
 {% for position in positions %}
-	{% if forloop.counter|divisibleby:3 %}
-		</div>
-		<div class='row'>
-	{% endif %}
+
 		<div class="col-md-4">
 			<h2><a href="{% url 'candidates_view' position_id=position.id %}">{{ position.name }}</a></h2><br>
 			<p>Anual Salary: {{ position.salary_anual }} </p>
 			<p>Job location: {{ position.location }} </p>
-			<p>{{ position.description }} </p>
-			<p>Required skills: {{ position.skills }} </p>
-		</div>
 
+		</div>
+	{% if forloop.counter|divisibleby:3 %}
+		</div>
+		<div class='row'>
+	{% endif %}
 {% endfor %}
 	</div>
      <!-- /container -->

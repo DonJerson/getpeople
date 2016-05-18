@@ -68,21 +68,33 @@ def disposition(request, position_id, candidate_id, logtemplate_id):
 
 def add_candidate(request):
 	form = CandidateForm(request.POST, request.FILES)
-	
-	if form.is_valid():
-		form.save()
 	context = {
 	'form':form
 	}
+	if request.method == 'POST':	
+		form = CandidateForm(request.POST, request.FILES)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(reverse('jobs'))
 	return render(request, 'add_candidate.html', context)
 	
-	
-	
+
+def login_function(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('jobs'))
+                
+def logout_function(request):
+	logout(request)
+	return HttpResponseRedirect(reverse('jobs'))
 	
 def login_view(request):
-	title = "Login"
-	form = UserLoginForm(request.POST or None)
-	if form.is_valid():
-		username = form.cleaned_data.get("username")
-		password = form.cleaned_data.get("password")
-	return render(request, "form.html", {'form':form,'title':title})
+    username = request.POST['username']
+    password = request.POST['password']
+    user = authenticate(username=username,password=password)
+    return HttpResponseRedirect(reverse('jobs'))

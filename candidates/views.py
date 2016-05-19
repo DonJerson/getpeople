@@ -14,13 +14,13 @@ def jobs(request):
 	'recruiter':recruiter,
 
 	'candidates':Candidate.objects.all(),
-	'positions':Position.objects.all()}
+	'positions':Position.objects.all().order_by('name')}
 	return render(request, 'jobs.html', block)
 
 def job_view(request, pk):
 	instance = get_object_or_404(Position, id=pk)
 	block = {
-	'positions':Position.objects.all(),
+	'positions':Position.objects.all().order_by('name'),
 	'instance':instance,
 	'candidates':instance.candidate_set.all()
 	}
@@ -58,7 +58,7 @@ def disposition(request, position_id, candidate_id, logtemplate_id):
 	new_log.save()
 	candidate.priority = candidate.priority + log_template.priority_offset
 	other_object = candidate.log_set.add(new_log)
-	
+	candidate.save()
 	instance = get_object_or_404(Position, id=position_id)
 	candidates=instance.candidate_set.all()
 

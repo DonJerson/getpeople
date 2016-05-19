@@ -5,7 +5,11 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container">
-        <h2>Call in process...</h2><br><br>
+        
+        <h3>Candidate's name: {{ candidate.name }}</h3>
+        <h3>Candidate's number: {{ candidate.phone }}</h3>
+        <h3><a href="{{ candidate.resume.url }}">Candidate's resume</a></span></h3><br>
+        <h2>Call in process...</h2><br>
         <h3>Hi, my name is {{ request.user.recruiter.name }} {{ request.user.recruiter.last_name }}, I am a Staff Recruiter from Barrister, a nation-wide agency providing full time jobs. I found your resume online and I believe you might be a good candidate for this position. Do you have a moment to discuss this opportunity?</h3><br><br>
         <p>Annual salary: {{ position.salary_anual }}</p><br>
         <p>Job Location: {{ position.location }}</p><br>

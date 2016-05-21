@@ -42,23 +42,35 @@ def in_call(request, position_id, candidate_id):
 	position = Position.objects.get(id=position_id)
 	candidate = Candidate.objects.get(id=candidate_id)
 	logtemplates = LogTemplate.objects.all()
+	form = NoteForm(request.POST)
+	
 	context = {
 	'positions':Position.objects.all(),
 	'candidate': candidate,
 	'position':position,
-	'logtemplates':logtemplates
+	'logtemplates':logtemplates,
+	'form':form
 	}
 	return render(request, 'in_call.html', context)
 	
-def disposition(request, position_id, candidate_id, logtemplate_id):
+def disposition(request, position_id, candidate_id):
 	recruiter = request.user.recruiter
 	candidate = Candidate.objects.get(id=candidate_id)
-	log_template = LogTemplate.objects.get(id=logtemplate_id)
-	new_log = Log(action=log_template.action, recruiter=recruiter, candidate=candidate)
+	log_template = LogTemplate.objects.all()
+	for log_type in log_template:
+		if log_type.action in request.POST:
+			log = log_type
+			break
+	
+	new_log = Log(action=log.action, recruiter=recruiter, candidate=candidate)
 	new_log.save()
-	candidate.priority = candidate.priority + log_template.priority_offset
+	candidate.priority = candidate.priority + log.priority_offset
 	other_object = candidate.log_set.add(new_log)
 	candidate.save()
+
+	f = NoteForm(request.POST, instance=new_log)
+	f.save()
+	
 	instance = get_object_or_404(Position, id=position_id)
 	candidates=instance.candidate_set.all()
 
@@ -68,14 +80,15 @@ def disposition(request, position_id, candidate_id, logtemplate_id):
 
 def add_candidate(request):
 	form = CandidateForm(request.POST, request.FILES)
-	context = {
-	'form':form
-	}
+
 	if request.method == 'POST':	
 		form = CandidateForm(request.POST, request.FILES)
 		if form.is_valid():
 			form.save()
 			return HttpResponseRedirect(reverse('jobs'))
+	context = {
+	'form':form
+	}
 	return render(request, 'add_candidate.html', context)
 	
 
@@ -98,3 +111,5 @@ def login_view(request):
     password = request.POST['password']
     user = authenticate(username=username,password=password)
     return HttpResponseRedirect(reverse('jobs'))
+
+

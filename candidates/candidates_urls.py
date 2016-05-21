@@ -9,5 +9,5 @@ urlpatterns = [
 	url(r'^add_candidate/$', views.add_candidate, name='add_candidate'),
 	url(r'^jobs/(?P<position_id>\d+)/$', views.candidates_view, name='candidates_view'),
 	url(r'^jobs/(?P<position_id>\d+)/(?P<candidate_id>\d+)/in_call/$', views.in_call, name='in_call'),
-	url(r'^jobs/(?P<position_id>\d+)/(?P<candidate_id>\d+)/(?P<logtemplate_id>\d+)/disposition/$', views.disposition , name='disposition'),
+	url(r'^jobs/(?P<position_id>\d+)/(?P<candidate_id>\d+)/disposition/$', views.disposition , name='disposition'),
 ]

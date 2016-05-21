@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import uuid
 # Create your models here.
 
 class Position(models.Model):
@@ -23,7 +24,7 @@ class Position(models.Model):
 class Candidate(models.Model):
 	name = models.CharField(max_length=200)
 	email = models.EmailField(max_length=150, null=False, unique=True)
-	phone = models.CharField(max_length=20, null=False, unique=True)
+	phone = models.CharField(max_length=20, null=False, unique=True, default=uuid.uuid1)
 	resume = models.FileField(upload_to="static/media")
 	position = models.ForeignKey(Position)
 	priority = models.IntegerField(default=0)
@@ -31,7 +32,7 @@ class Candidate(models.Model):
 	
 	@property
 	def logs(self):
-		return self.log_set.all()
+		return self.log_set.all().order_by('-created')
 	
 	def __unicode__(self):
 		return self.name
@@ -62,6 +63,7 @@ class Log(models.Model):
 	action = models.CharField(max_length=100)
 	recruiter = models.ForeignKey(Recruiter)
 	candidate = models.ForeignKey(Candidate)
+	note = models.CharField(max_length=300, null=True, blank=True)
 	created = models.DateTimeField(auto_now_add=True)
 	def __unicode__(self):
 		return self.action

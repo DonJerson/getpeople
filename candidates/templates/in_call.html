@@ -3,22 +3,28 @@
 {%block title %}In call Procedure{% endblock %}
 {% block body_content %}
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
+  <div class="jumbotron">
+    <div class="container">
         
         <h3>Candidate's name: {{ candidate.name }}</h3>
         <h3>Candidate's number: {{ candidate.phone }}</h3>
         <h3><a href="{{ candidate.resume.url }}">Candidate's resume</a></span></h3><br>
         <h2>Call in process...</h2><br>
-        <h3>Hi, my name is {{ request.user.recruiter.name }} {{ request.user.recruiter.last_name }}, I am a Staff Recruiter from Barrister, a nation-wide agency providing full time jobs. I found your resume online and I believe you might be a good candidate for this position. Do you have a moment to discuss this opportunity?</h3><br><br>
+        <h3>Hi {{ candidate.name }}, my name is {{ request.user.recruiter.name }} {{ request.user.recruiter.last_name }}, I am a Staff Recruiter from Barrister, a nation-wide agency providing full time jobs. I found your resume online and I believe you might be a good candidate for this position. Do you have a moment to discuss this opportunity?</h3><br><br>
         <p>Annual salary: {{ position.salary_anual }}</p><br>
         <p>Job Location: {{ position.location }}</p><br>
         <p>Job description: {{ position.description }}</p><br>
-		<p>Required skills: {{ position.skills }}</p><br>
-        {% for logtemplate in logtemplates %}
-          <p><a class="btn btn-primary btn-lg" href="{% url 'disposition' position_id=position.id candidate_id=candidate.id logtemplate_id=logtemplate.id %}" role="button">{{ logtemplate.action }} &raquo;</a></p>
-        {% endfor %}
+		<p>Required skills: {{ position.skills }}</p><b
+	  <div class="form-group">
+		<form method='post' action="{% url 'disposition' position_id=position.id candidate_id=candidate.id %}" enctype="multipart/form-data">{% csrf_token %}
+		{{ form }}
+    {% for logtemplate in logtemplates %}
+	    <input type="submit" name="{{ logtemplate.action }}" value="{{ logtemplate.action }}"/>
+
+    {% endfor %}
+        </form>
       </div>
     </div>
+  </div>
 
 {% endblock %}

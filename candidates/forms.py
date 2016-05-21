@@ -1,5 +1,5 @@
 from django import forms
-from .models import Candidate
+from .models import Candidate, Log
 from django.contrib.auth import authenticate, get_user_model, login, logout
 
 User = get_user_model()
@@ -23,4 +23,10 @@ class CandidateForm(forms.ModelForm):
 	class Meta:
 		model = Candidate
 		fields = ['name', 'email', 'phone', 'resume', 'position']
+		
+class NoteForm(forms.ModelForm):
+	class Meta:
+		model = Log
+		fields = ['note']
+	
 	

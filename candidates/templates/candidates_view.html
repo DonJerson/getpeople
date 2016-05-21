@@ -28,15 +28,18 @@
 
 			</div>
           </div>
-
+		  <div class="col-md-6 col-md-offset-3 ">
           <h2 class="sub-header">Interaction history</h2>
-          <div class="table-responsive">
+          </div>
+          <div class="col-md-9">
             <table class="table table-striped">
               <thead>
                 <tr>
+				  <th>Creation date</th>
                   <th>Action</th>
                   <th>Recruiter's name</th>
-                  <th>Creation date</th>
+                  
+                  <th>Notes</th>
                 </tr>
               </thead>
               <tbody>
@@ -44,9 +47,11 @@
 
 			{% for log in candidate.logs %}
                 <tr>
+				  <td>{{ log.created }}</td>
                   <td>{{ log.action }}</td>
                   <td>{{ log.recruiter }}</td>
-                  <td>{{ log.created }}</td>
+                  
+                  <td>{{ log.note }}</td>
                 </tr>
 			{% endfor %}
 

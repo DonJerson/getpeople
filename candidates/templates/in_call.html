@@ -14,12 +14,14 @@
         <p>Annual salary: {{ position.salary_anual }}</p><br>
         <p>Job Location: {{ position.location }}</p><br>
         <p>Job description: {{ position.description }}</p><br>
-		<p>Required skills: {{ position.skills }}</p><b
+		<p>Required skills: {{ position.skills }}</p><br>
 	  <div class="form-group">
 		<form method='post' action="{% url 'disposition' position_id=position.id candidate_id=candidate.id %}" enctype="multipart/form-data">{% csrf_token %}
-		{{ form }}
+		{{ form }}<br>
     {% for logtemplate in logtemplates %}
-	    <input type="submit" name="{{ logtemplate.action }}" value="{{ logtemplate.action }}"/>
+	    <button type="submit" name="{{ logtemplate.action }}" class="btn btn-primary">
+			<i class="icon-user icon-white"></i>{{ logtemplate.action }}
+		</button>
 
     {% endfor %}
         </form>

@@ -80,16 +80,26 @@ def disposition(request, position_id, candidate_id):
 
 def add_candidate(request):
 	form = CandidateForm(request.POST, request.FILES)
-
-	if request.method == 'POST':	
-		form = CandidateForm(request.POST, request.FILES)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect(reverse('jobs'))
 	context = {
 	'form':form
 	}
+	if request.method == 'POST':	
+		if form.is_valid():
+			instance = form.save(commit=False)
+			if "save" in request.POST:
+				instance.save()
+				return HttpResponseRedirect(reverse('add_candidate'))
+			elif "call_candidate" in request.POST:
+		
+				instance.save()
+				candidate_id = instance.id
+				position_id = instance.position.id
+				
+				url = reverse('in_call', kwargs={
+				'position_id':position_id, 'candidate_id':candidate_id})
+				return HttpResponseRedirect(url)
 	return render(request, 'add_candidate.html', context)
+
 	
 
 def login_function(request):

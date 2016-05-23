@@ -8,7 +8,12 @@
         <form method='post' action="{% url 'add_candidate' %}" enctype="multipart/form-data">{% csrf_token %}
 		{{ form.as_p }}
 			
-		<input type='submit' value='Add this candidate'>	
+		<button class="btn btn-primary" name="call_candidate" type="submit">
+		<i class="icon-user icon-white"></i>Add candidate and call right now
+		</button>
+		<button class="btn btn-primary" name="save" type="submit" value='Just add this candidate'>
+		<i class="icon-user icon-white"></i>Just add candidate
+		</button>
 		</form>
       </div>
     </div>

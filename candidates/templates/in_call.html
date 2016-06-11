@@ -3,28 +3,52 @@
 {%block title %}In call Procedure{% endblock %}
 {% block body_content %}
     <!-- Main jumbotron for a primary marketing message or call to action -->
-  <div class="jumbotron">
-    <div class="container">
-        
+   <div class="jumbotron">
+     <div class="container">
+   
+    
         <h3>Candidate's name: {{ candidate.name }}</h3>
         <h3>Candidate's number: {{ candidate.phone }}</h3>
         <h3><a href="{{ candidate.resume.url }}">Candidate's resume</a></span></h3><br>
         <h2>Call in process...</h2><br>
         <h3>Hi {{ candidate.name }}, my name is {{ request.user.recruiter.name }} {{ request.user.recruiter.last_name }}, I am a Staff Recruiter from Barrister, a nation-wide agency providing full time jobs. I found your resume online and I believe you might be a good candidate for this position. Do you have a moment to discuss this opportunity?</h3><br><br>
         <p>Annual salary: {{ position.salary_anual }}</p><br>
-        <p>Job Location: {{ position.location }}</p><br>
-        <pre style="background-color:white;">Job description: {{ position.description }}
-        
+        <p>Job Location: {{ position.location }}</p><br> 
+        <p>
+        Job description:
+        <div style="white-space: pre-wrap;">
+        <pre style="background-color:white;"> <br>{{ position.description }}</p>
+        </div>
         </pre>
-		<p>Required skills: {{ position.skills }}</p><br>
+		<p>
+		<br>
+        Required skills:
+        <div style="white-space: pre-wrap;">
+        <pre style="background-color:white;"> <br>{{ position.skills }}</p>
+        </div>
+        </pre>
+        <br><br>
 	  <div class="form-group">
-		<form method='post' action="{% url 'disposition' position_id=position.id candidate_id=candidate.id %}" enctype="multipart/form-data">{% csrf_token %}
-		{{ form }}<br>
-    {% for logtemplate in logtemplates %}
-	    <button type="submit" name="{{ logtemplate.action }}" class="btn btn-primary">
-			<i class="icon-user icon-white"></i>{{ logtemplate.action }}
-		</button>
 
+		<form method='post' action="{% url 'disposition' position_id=position.id candidate_id=candidate.id %}" enctype="multipart/form-data">{% csrf_token %}
+		<div class="row">
+				<div class="col-sm-9 col-md-6 col-md-offset-3 main">
+					{{ form }}<br>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+    {% for logtemplate in logtemplates %}
+		<div class="col-md-2 col-md-offset-4 main" >
+	        <button type="submit" name="{{ logtemplate.action }}" class="btn btn-primary">
+			    <i class="icon-user icon-white"></i>{{ logtemplate.action }}
+		    </button>
+		{% if forloop.counter|divisibleby:2 %}
+		</div>
+		<div class='row'>
+		{% endif %}
+	
     {% endfor %}
         </form>
       </div>

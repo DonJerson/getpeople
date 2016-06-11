@@ -63,7 +63,7 @@ class Log(models.Model):
 	action = models.CharField(max_length=100)
 	recruiter = models.ForeignKey(Recruiter)
 	candidate = models.ForeignKey(Candidate)
-	note = models.TextField(max_length=300, null=True, blank=True)
+	note = models.CharField(max_length=300, null=True, blank=True)
 	created = models.DateTimeField(auto_now_add=True)
 	def __unicode__(self):
 		return self.action

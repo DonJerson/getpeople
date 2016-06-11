@@ -28,11 +28,15 @@
         </div>
         </pre>
         <br><br>
-	  <div class="form-group">
+	  
+
+
+
+		<div class="form-group">
 
 		<form method='post' action="{% url 'disposition' position_id=position.id candidate_id=candidate.id %}" enctype="multipart/form-data">{% csrf_token %}
 		<div class="row">
-				<div class="col-sm-9 col-md-6 col-md-offset-3 main">
+				<div class="col-sm-9 col-md-6">
 					{{ form }}<br>
 				</div>
 			</div>
@@ -40,19 +44,15 @@
 
 		<div class="row">
     {% for logtemplate in logtemplates %}
-		<div class="col-md-2 col-md-offset-4 main" >
+
 	        <button type="submit" name="{{ logtemplate.action }}" class="btn btn-primary">
 			    <i class="icon-user icon-white"></i>{{ logtemplate.action }}
 		    </button>
-		{% if forloop.counter|divisibleby:2 %}
-		</div>
-		<div class='row'>
-		{% endif %}
-	
     {% endfor %}
         </form>
       </div>
-    </div>
+   
   </div>
-
+      </div>
+	</div>
 {% endblock %}

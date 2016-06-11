@@ -40,6 +40,8 @@ def candidates_view(request, position_id):
 
 def in_call(request, position_id, candidate_id):
 	position = Position.objects.get(id=position_id)
+	string_salary = str(position.salary_anual)
+	position.salary_anual = "USD $"+string_salary
 	candidate = Candidate.objects.get(id=candidate_id)
 	logtemplates = LogTemplate.objects.all()
 	form = NoteForm(request.POST)
@@ -109,7 +111,7 @@ def login_function(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
-                login(request, user)
+                login(request,user)
                 return HttpResponseRedirect(reverse('jobs'))
                 
 def logout_function(request):

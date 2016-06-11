@@ -16,22 +16,17 @@
         <p>Job Location: {{ position.location }}</p><br> 
         <p>
         Job description:
-        <div style="white-space: pre-wrap;">
-        <pre style="background-color:white;"> <br>{{ position.description }}</p>
-        </div>
+		</p><br>
+        <pre style="background-color:white;">{{ position.description }}
         </pre>
 		<p>
 		<br>
         Required skills:
-        <div style="white-space: pre-wrap;">
-        <pre style="background-color:white;"> <br>{{ position.skills }}</p>
-        </div>
+        </p>
+        <pre style="background-color:white;">{{ position.skills }}
         </pre>
         <br><br>
 	  
-
-
-
 		<div class="form-group">
 
 		<form method='post' action="{% url 'disposition' position_id=position.id candidate_id=candidate.id %}" enctype="multipart/form-data">{% csrf_token %}

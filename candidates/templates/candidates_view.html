@@ -8,61 +8,7 @@
  <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main">
           <h1 class="page-header">Available candidates for: {{ position.name }} position</h1>
  </div>
-        {% for candidate in candidates %}
-        <div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-2 main">
-
-		  <br>
-		
-          <div class="row placeholders">
-		
-            <div class="col-xs-6 col-xs-offset-3 col-sm-3 col-sm-offset-3 placeholder">
-              <img src="http://vignette1.wikia.nocookie.net/criminal-case-grimsborough/images/2/26/Unknown_Character.png/revision/latest?cb=20141106142941" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>{{ candidate.name }}</h4>
-              <span class="text-muted">{{ candidate.phone }}</span><br>
-              <span class="text-muted">{{ candidate.email }}</span><br>
-              <span class="text-muted"><a href="{{ candidate.resume.url }}">Candidate's resume</a></span>
-            </div>
-            <div class="row">
-
-					<p><a class="btn btn-primary btn-lg" href="{% url 'in_call' position_id=position.id candidate_id=candidate.id %}" role="button">Call now! &raquo;</a></p>
-
-			</div>
-          </div>
-		  <div class="col-md-6 col-md-offset-3 ">
-          <h2 class="sub-header">Interaction history</h2>
-          </div>
-          <div class="col-md-9">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-				  <th>Creation date</th>
-                  <th>Action</th>
-                  <th>Recruiter's name</th>
-                  
-                  <th>Notes</th>
-                </tr>
-              </thead>
-              <tbody>
-
-
-			{% for log in candidate.logs %}
-                <tr>
-				  <td>{{ log.created }}</td>
-                  <td>{{ log.action }}</td>
-                  <td>{{ log.recruiter }}</td>
-                  
-                  <td>{{ log.note }}</td>
-                </tr>
-			{% endfor %}
-
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-		{% endfor %}
+        {% include 'candidate.html' %}
 {% endblock %}
 
 

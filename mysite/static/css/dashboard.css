@@ -11,6 +11,10 @@ body {
 /*
  * Global add-ons
  */
+ 
+.center {
+    text-align: center;
+}
 
 .sub-header {
   padding-bottom: 10px;
@@ -55,6 +59,11 @@ body {
   margin-bottom: 20px;
   margin-left: -20px;
 }
+
+.sub-sub-header {
+  
+}
+
 .nav-sidebar > li > a {
   padding-right: 20px;
   padding-left: 20px;

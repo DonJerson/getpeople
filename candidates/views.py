@@ -252,6 +252,9 @@ Opinions, conclusions and other information in this message that do not relate t
 	server.sendmail(FROM, TO, msg.as_string())
 	server.close()
 	
+	new_log = Log(action='Emailed', recruiter=recruiter, candidate=candidate)
+	new_log.save()
+	
 	url = reverse('candidates_view', kwargs={
 	'position_id':position_id})
 	return HttpResponseRedirect(url)

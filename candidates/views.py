@@ -235,27 +235,27 @@ Opinions, conclusions and other information in this message that do not relate t
 
 	# Record the MIME types of both parts - text/plain and text/html.
 	
-	# part1 = MIMEText(text, 'plain')
-	# part2 = MIMEText(html, 'html')
+	part1 = MIMEText(text, 'plain')
+	part2 = MIMEText(html, 'html')
 
 	# Attach parts into message container.
 	# According to RFC 2046, the last part of a multipart message, in this case
 	# the HTML message, is best and preferred.
-	# msg.attach(part1)
-	# msg.attach(part2)
+	msg.attach(part1)
+	msg.attach(part2)
 
 	# Send the mail
-	send_mail('Job opportunity!', 'please', recruiter.email, TO, fail_silently=False, auth_user=recruiter.email, connection=None, html_message=html)
+	# send_mail('Job opportunity!', 'please', recruiter.email, TO, fail_silently=False, auth_user=recruiter.email, connection=None, html_message=html)
 	
-	# barrister = 'mail.barrister.com'
+	barrister = 'mail.barrister.com'
 
-	# server = smtplib.SMTP(barrister)
-	# server.ehlo()
-	# server.starttls()
-	# server.ehlo
-	# server.login(recruiter.email, 'Barrister123')
-	# server.sendmail(FROM, TO, msg.as_string())
-	# server.close()
+	server = smtplib.SMTP(barrister)
+	server.ehlo()
+	server.starttls()
+	server.ehlo
+	server.login(recruiter.email, 'Barrister123')
+	server.sendmail(FROM, TO, msg.as_string())
+	server.close()
 	
 	new_log = Log(action='Emailed', recruiter=recruiter, candidate=candidate)
 	new_log.save()

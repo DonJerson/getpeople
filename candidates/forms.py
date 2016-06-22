@@ -1,6 +1,7 @@
 from django import forms
-from .models import Candidate, Log
+from .models import Candidate, Log, Position
 from django.contrib.auth import authenticate, get_user_model, login, logout
+from .widgets import AdvancedEditor
 
 User = get_user_model()
 
@@ -29,4 +30,10 @@ class NoteForm(forms.ModelForm):
 		model = Log
 		fields = ['note']
 	
-	
+class PositionModelAdminForm(forms.ModelForm):
+	description = forms.CharField(widget=AdvancedEditor())
+	skills = forms.CharField(widget=AdvancedEditor())
+ 
+	class Meta:
+		model = Position
+		fields = ['name', 'description', 'skills']

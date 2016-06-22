@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 import uuid
 # Create your models here.
 
+@python_2_unicode_compatible
 class Position(models.Model):
 	name = models.CharField(max_length=200)
 	salary_anual = models.IntegerField()

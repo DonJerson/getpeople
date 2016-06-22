@@ -241,8 +241,8 @@ Opinions, conclusions and other information in this message that do not relate t
 	# Attach parts into message container.
 	# According to RFC 2046, the last part of a multipart message, in this case
 	# the HTML message, is best and preferred.
-	msg.attach(part1)
-	msg.attach(part2)
+	# msg.attach(part1)
+	# msg.attach(part2)
 
 	# Send the mail
 	send_mail('Job opportunity!', 'please', recruiter.email, TO, fail_silently=False, auth_user=recruiter.email, connection=None, html_message=html)

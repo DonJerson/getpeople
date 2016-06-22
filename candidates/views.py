@@ -172,12 +172,12 @@ def send_email(request, candidate_id):
 	msg['To'] = candidate.email
 
 
-	description = """<pre>%s</pre>""" % (position.description)
-	skills = """<pre>%s</pre>""" % (position.skills)
+	description = """<pre style="font-size:160%>%s</pre>""" % (position.description)
+	skills = """<pre style="font-size:160%>%s</pre>""" % (position.skills)
 
 	intro = """My name is %s %s, I am a Staff Recruiter specialist from Barrister. We are a nation-wide agency filling full time job positions for some of the largest corporations in the US. I found your resume online and I believe you are a good candidate for a job opening we have. Down bellow you will find the job description, please reply back to this email if you are interested in this opportunity.""" % (recruiter.name, recruiter.last_name)
 	signature = """
-<pre>
+<pre style="font-size:160%>
 %s
 Staff Recruiter Administrator
 Manager: Cesar de la Cruz

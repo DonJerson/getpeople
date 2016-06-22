@@ -48,7 +48,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'candidates',
     'storages',
-	'tinymce'
+	# 'tinymce'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -83,12 +83,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-TINYMCE_DEFAULT_CONFIG = {
-    'plugins': "table,spellchecker,paste,searchreplace",
-    'theme': "advanced",
-    'cleanup_on_startup': True,
-    'custom_undo_redo_levels': 10,
-}
+# TINYMCE_DEFAULT_CONFIG = {
+    # 'plugins': "table,spellchecker,paste,searchreplace",
+    # 'theme': "advanced",
+    # 'cleanup_on_startup': True,
+    # 'custom_undo_redo_levels': 10,
+# }
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 

@@ -8,8 +8,8 @@ from tinymce import models as tinymce_models
 class Position(models.Model):
 	name = models.CharField(max_length=200)
 	salary_anual = models.IntegerField()
-	description = tinymce_models.HTMLField()
-	skills = tinymce_models.HTMLField()
+	description = models.TextField()
+	skills = models.TextField()
 	location = models.CharField(max_length=200)
 	
 	def __unicode__(self):

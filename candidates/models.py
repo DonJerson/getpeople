@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
+from django.utils.encoding import python_2_unicode_compatible
 # Create your models here.
 
 @python_2_unicode_compatible

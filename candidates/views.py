@@ -177,7 +177,7 @@ def send_email(request, candidate_id):
 	intro = """My name is %s %s, I am a Staff Recruiter specialist from Barrister. We are a nation-wide agency filling full time job positions for some of the largest corporations in the US. I found your resume online and I believe you are a good candidate for a job opening we have. Down bellow you will find the job description, please reply back to this email if you are interested in this opportunity.""" % (recruiter.name, recruiter.last_name)
 
 	signature = """
-%s
+%s %s
 Staff Recruiter Administrator
 Manager: Cesar de la Cruz
 Barrister Global Services Network, Inc.
@@ -194,7 +194,7 @@ URL:	www.barrister.com
 COMPANY CONFIDENTIAL: This email and any files transmitted with it are confidential and intended solely for the use of the individual or entity to whom they are addressed. If the reader of this message is not the intended recipient(s), you are notified that you have received this message in error and that any review, dissemination, distribution or copying of this message is strictly prohibited. If you have received this message in error, please delete this message and notify the sender immediately. Please note that any views or opinions presented in this email are solely those of the author and do not necessarily represent those of the company.
 WARNING: Computer viruses can be transmitted via email. The recipient should check this email and any attachments for the presence of viruses. The company accepts no liability for any damage caused by any virus transmitted by this email.
 Opinions, conclusions and other information in this message that do not relate to the official business of Barrister Global Services Network, Inc. or its subsidiaries shall be understood as neither given nor endorsed by it.
--------------------------------------------""" % (recruiter.name, recruiter.email)
+-------------------------------------------""" % (recruiter.name, recruiter.last_name, recruiter.email)
 
 	text = "Please use a mail system that supports html format"
 	html = """

@@ -13,7 +13,7 @@ class Position(models.Model):
 	location = models.CharField(max_length=200)
 	
 	def __unicode__(self):
-		return self.name
+		return u'%s' % self.name
 	pass
 	
 	def get_absolute_url(self):

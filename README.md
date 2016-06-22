@@ -1,3 +1,7 @@
+This is the source-code of a website designed in Django/Python and hosted by Heroku.
+
+
+
 # python-getting-started
 
 A barebones Python app, which can easily be deployed to Heroku.

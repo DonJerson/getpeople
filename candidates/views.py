@@ -228,7 +228,8 @@ Opinions, conclusions and other information in this message that do not relate t
 	  </body>
 	</html>
 	""" % (candidate.name, intro, position.name, position.location, position.salary_anual, description, skills, signature)
-
+	
+	html = u'%s' % html
 
 	# Record the MIME types of both parts - text/plain and text/html.
 	part1 = MIMEText(text, 'plain')

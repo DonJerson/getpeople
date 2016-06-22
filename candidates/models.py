@@ -2,13 +2,14 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 from django.utils.encoding import python_2_unicode_compatible
+from tinymce import models as tinymce_models
 # Create your models here.
 
 class Position(models.Model):
 	name = models.CharField(max_length=200)
 	salary_anual = models.IntegerField()
-	description = models.TextField()
-	skills = models.TextField()
+	description = tinymce_models.HTMLField()
+	skills = tinymce_models.HTMLField()
 	location = models.CharField(max_length=200)
 	
 	def __unicode__(self):

@@ -8,3 +8,4 @@ admin.site.register(Position)
 admin.site.register(LogTemplate)
 admin.site.register(Log)
 admin.site.register(Recruiter)
+

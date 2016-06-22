@@ -3,6 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import *
 from django.core.urlresolvers import reverse
 from .forms import *
+from django.core.mail import send_mail
+
 # Create your views here.
 
 def jobs(request):
@@ -242,16 +244,17 @@ Opinions, conclusions and other information in this message that do not relate t
 	msg.attach(part2)
 
 	# Send the mail
+	send_mail('Job opportunity!', 'please', recruiter.email, TO, fail_silently=False, auth_user=recruiter.email, connection=None, html_message=html)
+	
+	# barrister = 'mail.barrister.com'
 
-	barrister = 'mail.barrister.com'
-
-	server = smtplib.SMTP(barrister)
-	server.ehlo()
-	server.starttls()
-	server.ehlo
-	server.login(recruiter.email, 'Barrister123')
-	server.sendmail(FROM, TO, msg.as_string())
-	server.close()
+	# server = smtplib.SMTP(barrister)
+	# server.ehlo()
+	# server.starttls()
+	# server.ehlo
+	# server.login(recruiter.email, 'Barrister123')
+	# server.sendmail(FROM, TO, msg.as_string())
+	# server.close()
 	
 	new_log = Log(action='Emailed', recruiter=recruiter, candidate=candidate)
 	new_log.save()

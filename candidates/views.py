@@ -61,7 +61,7 @@ def candidates_view(request, position_id):
 	'candidates':candidates,
 	'position':instance
 	}
-	return render(request, 'candidates_view.html', block)    
+	return render(request, 'candidates_view.html', block) 
 
 def in_call(request, position_id, candidate_id):
 	position = Position.objects.get(id=position_id)
@@ -261,3 +261,9 @@ Opinions, conclusions and other information in this message that do not relate t
 	url = reverse('candidates_view', kwargs={
 	'position_id':position_id})
 	return HttpResponseRedirect(url)
+
+def single_candidate(request, candidate_id):
+	candidate = get_object_or_404(Candidate, id=candidate_id)
+	position = candidate.position
+	block = {'candidate':candidate, 'position':position}
+	return render(request, 'single_candidate.html', block)

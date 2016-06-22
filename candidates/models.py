@@ -11,7 +11,16 @@ class Position(models.Model):
 	description = models.TextField()
 	skills = models.TextField()
 	location = models.CharField(max_length=200)
-	
+
+	# status_choices = (
+		# (y, 'Active'),
+		# (n, 'Closed')
+	# )
+	# status = models.CharField(
+		# max_length=1,
+		# choices=status_choices,
+		# default=y,
+	# )
 	def __unicode__(self):
 		return u'%s' % self.name
 	pass

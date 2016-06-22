@@ -1,11 +1,16 @@
-{% for candidate in candidates %}
+{% extends 'base.html' %}
+
+{% block title %} Single Candidate view{% endblock %}
+{% block body_content %}
+{% load staticfiles %}
+<br><br>
 <div class="row">
 
 	<div class="col-md-2 col-md-offset-5 placeholder">
 		<div class="center">
 		  <img src="http://vignette1.wikia.nocookie.net/criminal-case-grimsborough/images/2/26/Unknown_Character.png/revision/latest?cb=20141106142941" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
 		
-		  <h4><a href="{% url 'single_candidate'  candidate_id=candidate.id %}">{{ candidate.name }}</a></h4>
+		  <h4>{{ candidate.name }}</h4>
 		  <span class="text-muted">{{ candidate.phone }}</span><br>
 		  <span class="text-muted">{{ candidate.email }}</span><br>
 		  <span class="text-muted"><a href="{{ candidate.resume.url }}">Candidate's resume</a></span>
@@ -57,4 +62,4 @@
   </div>
 </div>
 <br><br><br>
-{% endfor %}
+{% endblock %}

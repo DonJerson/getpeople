@@ -11,5 +11,6 @@ urlpatterns = [
 	url(r'^jobs/(?P<position_id>\d+)/$', views.candidates_view, name='candidates_view'),
 	url(r'^jobs/(?P<position_id>\d+)/(?P<candidate_id>\d+)/in_call/$', views.in_call, name='in_call'),
 	url(r'^jobs/(?P<position_id>\d+)/(?P<candidate_id>\d+)/disposition/$', views.disposition , name='disposition'),
+	url(r'^single_candidate/(?P<candidate_id>\d+)/$', views.single_candidate , name='single_candidate'),
 	url(r'^send_email/(?P<candidate_id>\d+)/$', views.send_email, name='send_email'),
 ]

@@ -47,8 +47,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'candidates',
-    'storages',
-	# 'tinymce'
+    'storages'
 )
 
 MIDDLEWARE_CLASSES = (

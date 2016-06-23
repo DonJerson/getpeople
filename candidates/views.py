@@ -11,14 +11,38 @@ def jobs(request):
 	if request.user.is_authenticated():
 		recruiter = request.user.recruiter
 	else: recruiter = 0
-
+	
 	block = {
 	'recruiter':recruiter,
-
 	'candidates':Candidate.objects.all(),
 	'positions':Position.objects.all().order_by('name')}
 	return render(request, 'jobs.html', block)
+	
+def search(request):
+	def is_number(s):
+		try:
+			int(s)
+			return True
+		except ValueError:
+			return False
 
+	def clean_number(phone_number):
+		cleaned_number = ''
+		for char in phone_number:
+			if is_number(char):
+				cleaned_number += char          
+		return cleaned_number
+
+	if request.method == 'POST':
+		search = request.POST['search'].lower()
+		all_candidates = Candidate.objects.all()
+		selected_candidates = list()
+		for candidate in all_candidates:
+			if (search in candidate.name.lower()) or (clean_number(search) in clean_number(candidate.phone)) or (search in candidate.email.lower()):
+				selected_candidates.append(candidate)
+
+		
+		return render(request, 'search.html', {'candidates':selected_candidates})
 def update(request):
 	def rem_spaces(string):
 		counter = 0

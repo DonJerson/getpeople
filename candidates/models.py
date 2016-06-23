@@ -46,7 +46,7 @@ class Candidate(models.Model):
 		return self.log_set.all().order_by('-created')
 	
 	def __unicode__(self):
-		return self.name
+		return unicode(self.name)
 		
 	def get_absolute_url(self):
 		return reverse("candidate_view", kwargs={"id":self.id})

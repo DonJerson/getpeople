@@ -7,7 +7,7 @@
 		<div class="center">
 		  <img class="img-responsive" src="http://vignette1.wikia.nocookie.net/criminal-case-grimsborough/images/2/26/Unknown_Character.png/revision/latest?cb=20141106142941" width="200" height="200" alt="Generic placeholder thumbnail">
 		
-		  <h4><a href="{% url 'single_candidate'  candidate_id=candidate.id %}">{{ candidate.name }}</a></h4>
+		  <h4><a href="{% url 'single_candidate' candidate.id %}">{{ candidate.name }}</a></h4>
 		  <span class="text-muted">{{ candidate.phone }}</span><br>
 		  <span class="text-muted">{{ candidate.email }}</span><br>
 		  <span class="text-muted"><a href="{{ candidate.resume.url }}">Candidate's resume</a></span>

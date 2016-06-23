@@ -3,6 +3,7 @@ from .models import Candidate, Log, Position
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from .widgets import AdvancedEditor
 
+
 User = get_user_model()
 
 class UserLoginForm(forms.ModelForm):

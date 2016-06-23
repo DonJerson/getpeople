@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Candidates view{% endblock %}
+{% block body_content %}
+{% load staticfiles %}
+<br>
+<div class="container">
+	<div class="center">
+		<h2>Search results:</h2>
+	</div>
+</div>
+{% if candidates %}
+	<div class="container">
+		<ul>
+	{% for candidate in candidates %}
+			<li>
+				<h4><a href="{% url 'single_candidate' candidate.id %}">{{ candidate.name }} | {{candidate.email}} | {{candidate.phone}}</a></h4><br>
+			</li>
+	{% endfor %}
+		</ul>
+	</div>
+{% else %}
+<div class="center">
+	<p>No resuluts found.<p>
+</div>
+{% endif %}
+<br>
+{% endblock %}

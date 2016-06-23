@@ -1,23 +1,29 @@
  <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
           <a class="navbar-brand" href="{% url 'jobs' %}">Staff Recruiting</a>
           <a class="navbar-brand" href="{% url 'add_candidate' %}">Add Candidate</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-
+        <div id="navbar" class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
-			<li><a href="#">{{ user.recruiter }}</a></li>
-			<form class='navbar-form navbar-right' method='POST' action="{% url 'logout' %}">{% csrf_token %}
-			<button type='submit' class="btn btn-primary btn-sm">Logout</button>
+			<form method="post" action="{% url 'search' %}" enctype="multipart/form-data" class="navbar-form navbar-left">{% csrf_token %}
+				<div class="form-group">
+				  <input type="text" placeholder="Search" name='search'>
+				</div>
+				<button type="submit" class="btn btn-primary btn-sm">Submit</button>
 			</form>
+			<div class="navbar-form navbar-left">
+			<button class="btn btn-primary btn-sm" type="button" data-toggle="dropdown">{{ user.recruiter.name }} {{ user.recruiter.last_name }}
+			  <span class="caret"></span></button>
+			  <ul class="dropdown-menu">
+				<li><a href="{% url 'logout' %}">logout</a></li>
+			  </ul>
+			</div>
+		</div>
+<!-- 			<form class='navbar-form navbar-right' method='POST' action="{% url 'logout' %}">{% csrf_token %}
+				<button type='submit' class="btn btn-primary btn-sm">Logout</button>
+		
+			</form> -->
         {% else %}
 		  </ul>
 			<form class='navbar-form navbar-right' method='POST' action="{% url 'login' %}">{% csrf_token %}

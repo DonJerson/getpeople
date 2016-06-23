@@ -38,9 +38,8 @@ def search(request):
 		all_candidates = Candidate.objects.all()
 		selected_candidates = list()
 		for candidate in all_candidates:
-			if (search in candidate.name.lower()) or (clean_number(search) in clean_number(candidate.phone)) or (search in candidate.email.lower()):
+			if ((search in candidate.name.lower()) or (clean_number(search) in clean_number(candidate.phone) and (clean_number(search))) or (search in candidate.email.lower())):
 				selected_candidates.append(candidate)
-
 		number=len(selected_candidates)
 		return render(request, 'search.html', {'candidates':selected_candidates,'number':number})
 def update(request):

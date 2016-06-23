@@ -13,11 +13,13 @@
 				<button type="submit" class="btn btn-primary btn-sm">Submit</button>
 			</form>
 			<div class="navbar-form navbar-left">
-			<button class="btn btn-primary btn-sm" type="button" data-toggle="dropdown">{{ user.recruiter.name }} {{ user.recruiter.last_name }}
-			  <span class="caret"></span></button>
-			  <ul class="dropdown-menu">
+			<div class="dropdown">
+			<a class="btn btn-primary btn-sm" data-toggle="dropdown" href=#>{{ user.recruiter.name }} {{ user.recruiter.last_name }}
+			  <span class="caret"></span></a>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 				<li><a href="{% url 'logout' %}">logout</a></li>
 			  </ul>
+			</div>
 			</div>
 		</div>
 <!-- 			<form class='navbar-form navbar-right' method='POST' action="{% url 'logout' %}">{% csrf_token %}

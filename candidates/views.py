@@ -7,6 +7,11 @@ from django.core.mail import send_mail
 
 # Create your views here.
 
+def delete_candidate(request, candidate_id):
+	candidate = Candidate.objects.get(id=candidate_id)
+	candidate.delete()
+	return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
 def jobs(request):
 	if request.user.is_authenticated():
 		recruiter = request.user.recruiter

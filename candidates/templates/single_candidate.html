@@ -29,6 +29,11 @@
 	<div class="row">
 	  <p><a class="btn btn-primary btn-lg" href="{% url 'send_email' candidate_id=candidate.id %}" role="button">Email this candidate! &raquo;</a></p>
 	</div>
+	{% if request.user.is_superuser %}
+		<div class="row">
+		  <p><a class="btn btn-primary btn-lg" href="{% url 'delete_candidate' candidate_id=candidate.id %}" role="button">Delete this candidate! &raquo;</a></p>
+		</div>
+	{% endif %}
 	</div>
 </div>
 

@@ -3,3 +3,15 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+.center {
+    text-align: center;
+}
+.img-responsive {
+    border-radius: 50%;
+}
+pre {
+    text-align: left;
+    white-space: pre-line;
+    font-size: 20px;
+	font-family: Calibri;
+}

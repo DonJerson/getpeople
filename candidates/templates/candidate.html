@@ -1,9 +1,11 @@
 {% for candidate in candidates %}
+<br><br>
+
 <div class="row">
 
 	<div class="col-md-2 col-md-offset-5 placeholder">
 		<div class="center">
-		  <img src="http://vignette1.wikia.nocookie.net/criminal-case-grimsborough/images/2/26/Unknown_Character.png/revision/latest?cb=20141106142941" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
+		  <img class="img-responsive" src="http://vignette1.wikia.nocookie.net/criminal-case-grimsborough/images/2/26/Unknown_Character.png/revision/latest?cb=20141106142941" width="200" height="200" alt="Generic placeholder thumbnail">
 		
 		  <h4><a href="{% url 'single_candidate'  candidate_id=candidate.id %}">{{ candidate.name }}</a></h4>
 		  <span class="text-muted">{{ candidate.phone }}</span><br>
@@ -56,5 +58,6 @@
 	</table>
   </div>
 </div>
-<br><br><br>
+
+<br>
 {% endfor %}

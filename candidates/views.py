@@ -214,17 +214,17 @@ Opinions, conclusions and other information in this message that do not relate t
 		</style>
 	  </head>
 	  <body>
-		<p>Hello %s,</p>
-		<p>%s</p><br>
+		<p style="font-size:16px;font-family:calibri">Hello %s,</p>
+		<p style="font-size:16px;font-family:calibri">%s</p><br>
 		<h3>%s</h3>
 		<h4 id='subheaders'>Job location: %s</h4>
 		<h4 id='subheaders'>Annual Salary: USD $%s</h4><br>
 		<h4>Job Description:</h4>
-		<pre style="font-size: 12px;">%s</pre><br>
+		<pre style="font-size: 16px;font-family:calibri">%s</pre><br>
 		<h4>Required skills and additional information:</h4>
-		<pre style="font-size: 12px;">%s</pre><br><br>
-		<p>Sincerely,</p><br><br>
-	<pre style="font-size: 12px;">%s<pre><br>
+		<pre style="font-size: 16px;font-family:calibri">%s</pre><br><br>
+		<p style="font-size:16px;font-family:calibri">Sincerely,</p><br><br>
+	<pre style="font-size:16px;font-family:calibri">%s<pre><br>
 		
 		
 	  </body>

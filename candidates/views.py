@@ -41,8 +41,8 @@ def search(request):
 			if (search in candidate.name.lower()) or (clean_number(search) in clean_number(candidate.phone)) or (search in candidate.email.lower()):
 				selected_candidates.append(candidate)
 
-		
-		return render(request, 'search.html', {'candidates':selected_candidates})
+		number=len(selected_candidates)
+		return render(request, 'search.html', {'candidates':selected_candidates,'number':number})
 def update(request):
 	def rem_spaces(string):
 		counter = 0

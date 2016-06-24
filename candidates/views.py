@@ -12,15 +12,35 @@ def delete_candidate(request, candidate_id):
 	candidate.delete()
 	return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+def jobs_1099(request):
+	if request.user.is_authenticated():
+		recruiter = request.user.recruiter
+	else: recruiter = 0
+	
+	positions = list()
+	for position in Position.objects.all().order_by('name'):
+		if '1099' in position.name:
+			positions.append(position)
+	block = {
+	'recruiter':recruiter,
+	'candidates':Candidate.objects.all(),
+	'positions':positions}
+	return render(request, 'jobs_1099.html', block)	
+	
 def jobs(request):
 	if request.user.is_authenticated():
 		recruiter = request.user.recruiter
 	else: recruiter = 0
 	
+	positions = list()
+	for position in Position.objects.all().order_by('name'):
+		if '1099' not in position.name:
+			positions.append(position)
+			
 	block = {
 	'recruiter':recruiter,
 	'candidates':Candidate.objects.all(),
-	'positions':Position.objects.all().order_by('name')}
+	'positions':positions}
 	return render(request, 'jobs.html', block)
 	
 def search(request):
@@ -91,11 +111,13 @@ def candidates_view(request, position_id):
 	}
 	return render(request, 'candidates_view.html', block) 
 
-def in_call(request, position_id, candidate_id):
+def in_call(request, candidate_id):
+	candidate = Candidate.objects.get(id=candidate_id)
+	position_id = candidate.position.id
 	position = Position.objects.get(id=position_id)
 	string_salary = str(position.salary_anual)
 	position.salary_anual = "USD $"+string_salary
-	candidate = Candidate.objects.get(id=candidate_id)
+	
 	logtemplates = LogTemplate.objects.all()
 	form = NoteForm(request.POST)
 	
@@ -108,9 +130,10 @@ def in_call(request, position_id, candidate_id):
 	}
 	return render(request, 'in_call.html', context)
 	
-def disposition(request, position_id, candidate_id):
-	recruiter = request.user.recruiter
+def disposition(request, candidate_id):
 	candidate = Candidate.objects.get(id=candidate_id)
+	recruiter = request.user.recruiter
+	position_id = candidate.position.id
 	log_template = LogTemplate.objects.all()
 	for log_type in log_template:
 		if log_type.action in request.POST:

@@ -4,14 +4,12 @@
 			<div class="navbar-left navbar-form navbar-center">
 				<a class="navbar-brand" href="{% url 'jobs' %}"><span class="glyphicon glyphicon-user"></span> Staff Recruiting</a>
 				{%if request.user.is_superuser %}
-				<a class="navbar-brand" href="http://getpeople.herokuapp.com/admin"><span class="glyphicon glyphicon-eye-open"></span> Admin</a> {% endif %}
+				<a class="navbar-brand" href="{% url 'admin:index' %}"><span class="glyphicon glyphicon-eye-open"></span> Admin</a> {% endif %}
 			</div>
 		</div>
 	{% if user.is_authenticated %}
 		<div class="navbar-form navbar-right">
 		<ul class="nav navbar-nav">
-			<li><a href="#about">Full-time</a></li>
-			<li><a href="#contact">1099</a></li>
 			<li class="dropdown">
 			<a data-toggle="dropdown" href=#>{{ user.recruiter.name }} {{ user.recruiter.last_name }}
 			  <span class="glyphicon glyphicon-chevron-down"></span></a>

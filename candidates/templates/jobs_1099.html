@@ -14,11 +14,12 @@
 
 <div class="container">
 	<ul class="nav nav-pills">
-		<li class="active"><a href="{% url 'jobs' %}">Full-time</a></li>
-		<li><a id="1099" href="{% url 'jobs_1099' %}">1099</a></li>
+		<li><a href="{% url 'jobs' %}">Full-time</a></li>
+		<li class="active"><a id="1099" href="{% url 'jobs' %}">1099</a></li>
 	</ul>
 	<!-- Example row of columns -->
 	<div class="row">
+{% if positions %}
 {% for position in positions %}
 
 		<div class="col-md-4">
@@ -33,6 +34,7 @@
 	{% endif %}
 {% endfor %}
 	</div>
+{% else %}
+<h2>No positions to show</h2>	
+{% endif %}
 {% endblock %}
-
-

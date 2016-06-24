@@ -40,7 +40,7 @@
 	  
 		<div class="form-group">
 
-			<form method='post' action="{% url 'disposition' position_id=position.id candidate_id=candidate.id %}" enctype="multipart/form-data">{% csrf_token %}
+			<form method='post' action="{% url 'disposition' candidate_id=candidate.id %}" enctype="multipart/form-data">{% csrf_token %}
 			<div class="row">
 					<div class="col-sm-9 col-md-6">
 						{{ form }}<br>
@@ -61,12 +61,3 @@
  
 {% endblock %}
 
-{% block else_content %}
-<div class="jumbotron">
-	<div class="container">
-		<div class="col-md-6 col-md-offset-3">
-        <h1 "page-header">Please log in to continue...</h1>
-        </div>
-    </div>
-</div>
-{% endblock %}

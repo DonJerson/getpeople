@@ -205,7 +205,12 @@ def send_email(request, candidate_id):
 	candidate = Candidate.objects.get(id=candidate_id)
 	position_id = candidate.position.id
 	position = candidate.position
-	
+	if '1099' in position.name:
+		intro_change = 'contractor employees'
+		salary_change = 'Starting pay per work order:'
+	else:
+		intro_change = 'full time jobs'
+		salary_change = 'Annual Salary:'
 	import smtplib
 	from email.mime.multipart import MIMEMultipart
 	from email.mime.text import MIMEText
@@ -222,10 +227,9 @@ def send_email(request, candidate_id):
 	msg['From'] = recruiter.email
 	msg['To'] = candidate.email
 
-
 	description = """%s""" % (position.description)
 	skills = """%s""" % (position.skills)
-	intro = """My name is %s %s, I am a Staff Recruiter specialist from Barrister. We are a nation-wide agency filling full time job positions for some of the largest corporations in the US. I found your resume online and I believe you are a good candidate for a job opening we have. Down bellow you will find the job description, please reply back to this email if you are interested in this opportunity.""" % (recruiter.name, recruiter.last_name)
+	intro = """My name is %s %s, I am a Staff Recruiter specialist from Barrister. We are a nation-wide agency filling in %s for some of the largest corporations in the US. I found your resume online and I believe you are a great candidate for a job opening we have. Down bellow you will find the job description, please reply back to this email if you are interested in this opportunity.""" % (recruiter.name, recruiter.last_name, intro_change)
 
 	signature = """
 %s %s
@@ -269,7 +273,7 @@ Opinions, conclusions and other information in this message that do not relate t
 		<p style="font-size:16px;font-family:calibri">%s</p><br>
 		<h3>%s</h3>
 		<h4 id='subheaders'>Job location: %s</h4>
-		<h4 id='subheaders'>Annual Salary: USD $%s</h4><br>
+		<h4 id='subheaders'>%s USD $%s</h4><br>
 		<h4>Job Description:</h4>
 		<pre style="font-size: 16px;font-family:calibri">%s</pre><br>
 		<h4>Required skills and additional information:</h4>
@@ -280,7 +284,7 @@ Opinions, conclusions and other information in this message that do not relate t
 		
 	  </body>
 	</html>
-	""" % (candidate.name, intro, position.name, position.location, position.salary_anual, description, skills, signature)
+	""" % (candidate.name, intro, position.name, position.location, salary_change, position.salary_anual, description, skills, signature)
 
 	# Record the MIME types of both parts - text/plain and text/html.
 	

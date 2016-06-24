@@ -3,6 +3,8 @@
 		<div class="navbar-header">
 			<div class="navbar-left navbar-form navbar-center">
 				<a class="navbar-brand" href="{% url 'jobs' %}"><span class="glyphicon glyphicon-user"></span> Staff Recruiting</a>
+				{%if request.user.is_superuser %}
+				<a class="navbar-brand" href="http://getpeople.herokuapp.com/admin"><span class="glyphicon glyphicon-eye-open"></span> Admin</a> {% endif %}
 			</div>
 		</div>
 	{% if user.is_authenticated %}

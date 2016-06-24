@@ -115,8 +115,6 @@ def in_call(request, candidate_id):
 	candidate = Candidate.objects.get(id=candidate_id)
 	position_id = candidate.position.id
 	position = Position.objects.get(id=position_id)
-	string_salary = str(position.salary_anual)
-	position.salary_anual = "USD $"+string_salary
 	
 	logtemplates = LogTemplate.objects.all()
 	form = NoteForm(request.POST)
@@ -128,7 +126,10 @@ def in_call(request, candidate_id):
 	'logtemplates':logtemplates,
 	'form':form
 	}
-	return render(request, 'in_call.html', context)
+	if '1099' in position.name:
+		return render(request, 'in_call_1099.html', context)
+	else:
+		return render(request, 'in_call.html', context)
 	
 def disposition(request, candidate_id):
 	candidate = Candidate.objects.get(id=candidate_id)

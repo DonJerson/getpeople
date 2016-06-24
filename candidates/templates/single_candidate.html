@@ -6,7 +6,7 @@
 <br><br>
 <div class ='container'>
 <div class='center'>
-<h4>This candidate belongs to the "{{ position }}" position</h4>
+<h4>This candidate belongs to the "{{ position }}" position</h4><br><br>
 </div>
 </div>
 <div class="row">
@@ -23,15 +23,15 @@
 	</div>
 	<div class="col-md-2 col-md-offset-1">
 	<div class="row">
-	  <p><a class="btn btn-primary btn-lg" href="{% url 'in_call' position_id=position.id candidate_id=candidate.id %}" role="button">Call now! &raquo;</a></p>
+	  <p><a class="btn btn-primary btn-lg" href="{% url 'in_call' position_id=position.id candidate_id=candidate.id %}" role="button"><span class="glyphicon glyphicon-earphone"></span> Call now! &raquo;</a></p>
 
 	</div>
 	<div class="row">
-	  <p><a class="btn btn-primary btn-lg" href="{% url 'send_email' candidate_id=candidate.id %}" role="button">Email this candidate! &raquo;</a></p>
+	  <p><a class="btn btn-primary btn-lg" href="{% url 'send_email' candidate_id=candidate.id %}" role="button"><span class="glyphicon glyphicon-send"></span> Email this candidate! &raquo;</a></p>
 	</div>
 	{% if request.user.is_superuser %}
 		<div class="row">
-		  <p><a class="btn btn-primary btn-lg" href="{% url 'delete_candidate' candidate_id=candidate.id %}" role="button">Delete this candidate! &raquo;</a></p>
+		  <p><a class="btn btn-primary btn-lg" href="{% url 'delete_candidate' candidate_id=candidate.id %}" role="button"><span class="glyphicon glyphicon-trash"></span> Delete this candidate!  &raquo;</a></p>
 		</div>
 	{% endif %}
 	</div>
@@ -40,6 +40,7 @@
 <div class="row">
   <div class="col-md-2 col-md-offset-5 ">
 	<div class="center">
+		<br>
 		<h4>Interaction history</h4>
 	</div>
   </div>

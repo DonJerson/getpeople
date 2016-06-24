@@ -1,6 +1,10 @@
 {% for candidate in candidates %}
 <br><br>
-
+<div class="row">
+	<div class="col-md-2">
+		<br><br>
+	</div>
+</div>
 <div class="row">
 
 	<div class="col-md-2 col-md-offset-5 placeholder">
@@ -15,11 +19,11 @@
 	</div>
 	<div class="col-md-2 col-md-offset-1">
 	<div class="row">
-	  <p><a class="btn btn-primary btn-lg" href="{% url 'in_call' position_id=position.id candidate_id=candidate.id %}" role="button">Call now! &raquo;</a></p>
+	  <p><a class="btn btn-primary btn-lg" href="{% url 'in_call' position_id=position.id candidate_id=candidate.id %}" role="button"><span class="glyphicon glyphicon-earphone"></span> Call now! &raquo;</a></p>
 
 	</div>
 	<div class="row">
-	  <p><a class="btn btn-primary btn-lg" href="{% url 'send_email' candidate_id=candidate.id %}" role="button">Email this candidate! &raquo;</a></p>
+	  <p><a class="btn btn-primary btn-lg" href="{% url 'send_email' candidate_id=candidate.id %}" role="button"><span class="glyphicon glyphicon-send"></span> Email this candidate! &raquo;</a></p>
 	</div>
 	</div>
 </div>
@@ -27,6 +31,7 @@
 <div class="row">
   <div class="col-md-2 col-md-offset-5 ">
 	<div class="center">
+		<br>
 		<h4>Interaction history</h4>
 	</div>
   </div>

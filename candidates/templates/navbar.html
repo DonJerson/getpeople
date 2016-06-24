@@ -1,54 +1,59 @@
  <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="{% url 'jobs' %}">Staff Recruiting</a>
-          <a class="navbar-brand" href="{% url 'add_candidate' %}">Add Candidate</a>
-        </div>
-        <div id="navbar" class="nav navbar-nav navbar-right">
-        {% if user.is_authenticated %}
-			<form method="post" action="{% url 'search' %}" enctype="multipart/form-data" class="navbar-form navbar-left">{% csrf_token %}
-				<div class="form-group">
-				  <input type="text" placeholder="Search" name='search'>
-				</div>
-				<button type="submit" class="btn btn-primary btn-sm">Submit</button>
-			</form>
-			<div class="navbar-form navbar-left">
-			<div class="dropdown">
-			<a class="btn btn-primary btn-sm" data-toggle="dropdown" href=#>{{ user.recruiter.name }} {{ user.recruiter.last_name }}
-			  <span class="caret"></span></a>
-			  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-			    <li><a href=#>Profile</a></li>
-				<li><a href="{% url 'logout' %}">logout</a></li>
-			  </ul>
-			</div>
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<div class="navbar-left navbar-form navbar-center">
+				<a class="navbar-brand" href="{% url 'jobs' %}"><span class="glyphicon glyphicon-user"></span> Staff Recruiting</a>
 			</div>
 		</div>
-<!-- 			<form class='navbar-form navbar-right' method='POST' action="{% url 'logout' %}">{% csrf_token %}
-				<button type='submit' class="btn btn-primary btn-sm">Logout</button>
-		
-			</form> -->
-        {% else %}
-		  </ul>
-			<form class='navbar-form navbar-right' method='POST' action="{% url 'login' %}">{% csrf_token %}
-			<div class='form-group'>
-				<input type='text' class='form-control' name='username' placeholder='username'>
-			</div>
-			<div class='form-group'>
-				<input type='password' class='form-control' name='password' placeholder='password'>
-			</div>
-			
-			<button type='submit' class="btn btn-primary btn-sm">Login</button>
+	{% if user.is_authenticated %}
+		<div class="navbar-form navbar-right">
+		<ul class="nav navbar-nav">
+			<li><a href="#about">Full-time</a></li>
+			<li><a href="#contact">1099</a></li>
+			<li class="dropdown">
+			<a data-toggle="dropdown" href=#>{{ user.recruiter.name }} {{ user.recruiter.last_name }}
+			  <span class="glyphicon glyphicon-chevron-down"></span></a>
+			  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+				<li>
+				<a href=#><span class="glyphicon glyphicon-eye-open"></span> View my Profile</a>
+				</li>
+				<li>
+				<a href="{% url 'add_candidate' %}"><span class="glyphicon glyphicon-plus"></span> Add Candidate</a>
+				</li>
+				<li>
+				<a href="{% url 'logout' %}"><span class="glyphicon glyphicon-off"></span> logout</a>
+				</li>
+				
+			  </ul>
+		</div>
+				
+		</ul>
+		<div class="navbar-right navbar-form navbar-center">
+			<form method="post" action="{% url 'search' %}" enctype="multipart/form-data" class="navbar-form navbar-left">{% csrf_token %}
+				
+				<input type="text" size="43" placeholder="Search candidates by name, email or phone #" name='search' class="form-control">
+				<button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></button>
 			</form>
-			<ul>
-        {% endif %}
+		</div>
 
-          </ul>
-<!--
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
--->
-        </div>
-      </div>
-    </nav>
+
+			
+				</ul>
+	{% else %}
+		<div class="navbar-form navbar-right">
+			<form class='navbar-form navbar-right' method='POST' action="{% url 'login' %}">{% csrf_token %}
+				<div class='form-group'>
+					<input type='text' class='form-control' name='username' placeholder='username'>
+					<input type='password' class='form-control' name='password' placeholder='password'>
+					<button type='submit' class="btn btn-primary btn-sm">Login</button>
+			</form>
+			</div>
+		</div>
+	{% endif %}
+
+	 
+	 
+    
+</div>
+</nav>
 

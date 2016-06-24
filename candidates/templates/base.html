@@ -14,22 +14,22 @@
 <body>
 	
 {% include 'navbar.html' %}
-	
-{% block body_content %}
-	
-{% endblock %}
-
+{% if user.is_authenticated %}
+	{% block body_content %}{% endblock %}
+{% else %}
+	{% block else_content %}{% endblock %}
+{% endif %}
 {% include 'javascript.html' %}
 
 </body>
-   
-<div class="row">
-  <div class="col-sm-9 col-md-10 main">  
-  
-  <hr>
-  <footer>
-	<p>&copy; Created by Jerson Mendez</p>
-  </footer>
-  </div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-9 col-md-10 main">  
+			<hr>
+			<footer>
+				<p>&copy; Created by Jerson Mendez</p>
+			</footer>
+		</div>
+	</div>
 </div>
 </html>

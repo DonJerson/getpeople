@@ -57,7 +57,7 @@ class Recruiter(models.Model):
 	name = models.CharField(max_length=100)
 	last_name = models.CharField(max_length=100)
 	email = models.EmailField()
-	picture = models.FileField(null=True)
+	#picture = models.FileField(null=True)
 	user = models.OneToOneField(User)
 	pass
 	

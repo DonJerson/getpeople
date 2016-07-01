@@ -1,0 +1,75 @@
+{% include 'copyright_shit.html' %}
+
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+	<head>
+		{% include 'head_css_stuff.html' %}
+		<title>Staff Recruiting | {%block title %}{% endblock %}</title>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script type="text/javascript">
+		  google.charts.load('current', {'packages':['gauge']});
+		  google.charts.setOnLoadCallback(drawChart);
+		  function drawChart() {
+
+			var data = google.visualization.arrayToDataTable([
+			  ['Label', 'Value'],
+			{% for recruiter in recruiters %}
+			  ['{{ recruiter.name }}', {{ recruiter.logs_number }}],
+			{% endfor %}
+			]);
+
+			var options = {
+			  width: 400, height: 120,
+			  redFrom: 90, redTo: 100,
+			  yellowFrom:75, yellowTo: 90,
+			  minorTicks: 5
+			};
+
+			var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+			chart.draw(data, options);
+
+			setInterval(function() {
+			  data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+			  chart.draw(data, options);
+			}, 13000);
+			setInterval(function() {
+			  data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+			  chart.draw(data, options);
+			}, 5000);
+			setInterval(function() {
+			  data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+			  chart.draw(data, options);
+			}, 26000);
+		  }
+		</script>
+	</head>
+
+	<body>
+		{% include 'navbar.html' %}
+		{% if user.is_authenticated %}
+			{% block body_content %}{% endblock %}
+		{% else %}
+			<div class="jumbotron">
+				<div class="container">
+					<div class="col-md-6 col-md-offset-3">
+					<h1 "page-header">Please log in to continue...</h1>
+					</div>
+				</div>
+			</div>
+		{% endif %}
+		{% include 'javascript.html' %}
+	</body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-9 col-md-10 main">  
+				<hr>
+				<footer>
+					<p>&copy; Created by Jerson Mendez</p>
+				</footer>
+			</div>
+		</div>
+	</div>
+</html>

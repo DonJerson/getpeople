@@ -15,7 +15,10 @@
 			  <span class="glyphicon glyphicon-chevron-down"></span></a>
 			  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 				<li>
-				<a href=#><span class="glyphicon glyphicon-eye-open"></span> View my Profile</a>
+				<a href="{% url 'rec_profile' days=7 %}"><span class="glyphicon glyphicon-eye-open"></span> View my Profile</a>
+				</li>
+				<li>
+				<a href="{% url 'main_wall' days=7 %}"><span class="glyphicon glyphicon-eye-open"></span> Main Wall</a>
 				</li>
 				<li>
 				<a href="{% url 'add_candidate' %}"><span class="glyphicon glyphicon-plus"></span> Add Candidate</a>

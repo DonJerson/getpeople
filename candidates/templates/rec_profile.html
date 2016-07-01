@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Candidates view{% endblock %}
+{% block body_content %}
+{% load staticfiles %}
+<div class="row">
+	<div class="col-sm-9 col-sm-offset-1 col-md-10 col-md-offset-1 main">
+		<div class="center">
+			<h1 class="page-header">{{ recruiter.name }}'s profile</h1>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+    <div class="col-md-2 col-md-offset-2 ">
+	    <p class="page-header">Currently displaying data for the last {{ days }} day/s</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2 col-md-offset-5 ">
+	    <div class="center">
+		    <br>
+		    <h4>Interaction history</h4>
+	    </div>
+    </div>
+	<div class="col-md-8 col-md-offset-2">
+		<table class="table table-striped">
+		    <thead>
+				<tr>
+					<th>Creation date</th>
+					<th>Action</th>
+					<th>Recruiter's name</th>
+			        <th>Notes</th>
+			    </tr>
+		    </thead>
+		    <tbody>
+
+
+			{% for log in logs %}
+				<tr>
+					<td>{{ log.created }}</td>
+					<td>{{ log.action }}</td>
+					<td>{{ log.recruiter }}</td>
+				  
+					<td>{{ log.note }}</td>
+				</tr>
+			{% endfor %}
+
+		    </tbody>
+		</table>
+	</div>
+</div>
+
+{% endblock %}
+

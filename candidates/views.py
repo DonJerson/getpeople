@@ -4,9 +4,38 @@ from .models import *
 from django.core.urlresolvers import reverse
 from .forms import *
 from django.core.mail import send_mail
-
+from datetime import datetime, timedelta
 # Create your views here.
 
+def rec_profile(request, days):
+	rec = request.user.recruiter
+	all_logs = rec.log_set.filter(created__gte=datetime.now()-timedelta(days=int(days)))
+	logs_number = len(all_logs)
+	block = {
+	'recruiter':rec,
+	'logs':all_logs,
+	'days':days,
+	'logs_number':logs_number
+	}
+	return render(request, 'rec_profile.html', block)
+	
+def main_wall(request, days):
+
+	recs = Recruiter.objects.all()
+	#all_logs = rec.log_set.all()
+	updated_recs = list()
+	total = 0
+	for rec in recs:
+		rec.logs_number = len(rec.log_set.filter(created__gte=datetime.now()-timedelta(days=int(days))))
+		if rec.logs_number != 0:
+			updated_recs.append(rec)
+
+	block = {
+	'recruiters':updated_recs
+	#'logs':all_logs
+	}
+	return render(request, 'main_wall.html', block)
+	
 def delete_candidate(request, candidate_id):
 	candidate = Candidate.objects.get(id=candidate_id)
 	candidate.delete()

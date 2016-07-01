@@ -16,12 +16,7 @@
 		{% for recruiter in recruiters %}
 			<div = class="col-md-1">
 				<div class="center">
-					<a href="{% url 'rec_profile' days=days %}"><button type="submit" class="btn btn-primary btn-sm">{{ recruiter.name }}</button></a>
-				</div>
-			</div>
-			<div = class="col-md-1">
-				<div class="center">
-					<a href="{% url 'rec_profile' days=days %}"><button type="submit" class="btn btn-primary btn-sm">{{ recruiter.name }}</button></a>
+					<a href="{% url 'rec_profile' rec_id=recruiter.id days=days %}"><button type="submit" class="btn btn-primary btn-sm">{{ recruiter.name }}</button></a>
 				</div>
 			</div>
 		{% endfor %}

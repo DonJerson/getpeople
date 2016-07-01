@@ -7,8 +7,8 @@ from django.core.mail import send_mail
 from datetime import datetime, timedelta
 # Create your views here.
 
-def rec_profile(request, days):
-	rec = request.user.recruiter
+def rec_profile(request, rec_id, days):
+	rec = Recruiter.objects.get(id=rec_id)
 	all_logs = rec.log_set.filter(created__gte=datetime.now()-timedelta(days=int(days)))
 	logs_number = len(all_logs)
 	block = {

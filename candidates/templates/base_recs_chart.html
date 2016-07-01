@@ -11,6 +11,8 @@
 		<script type="text/javascript">
 		  google.charts.load('current', {'packages':['gauge']});
 		  google.charts.setOnLoadCallback(drawChart);
+		  google.charts.setOnLoadCallback(drawChart2);
+		  google.charts.setOnLoadCallback(drawChart3);
 		  function drawChart() {
 
 			var data = google.visualization.arrayToDataTable([
@@ -34,15 +36,81 @@
 			setInterval(function() {
 			  data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
 			  chart.draw(data, options);
-			}, 13000);
+			}, 9999999);
 			setInterval(function() {
 			  data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
 			  chart.draw(data, options);
-			}, 5000);
+			}, 0);
 			setInterval(function() {
 			  data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
 			  chart.draw(data, options);
-			}, 26000);
+			}, 0);
+		  }
+		  function drawChart2() {
+
+			var data = google.visualization.arrayToDataTable([
+			  ['Label', 'Value'],
+			{% for recruiter in recruiters %}
+			  ['{{ recruiter.name }}', {{ recruiter.accepted_number }}],
+			{% endfor %}
+			]);
+
+			var options = {
+			  width: 400, height: 120,
+			  redFrom: 90, redTo: 100,
+			  yellowFrom:75, yellowTo: 90,
+			  minorTicks: 5
+			};
+
+			var chart = new google.visualization.Gauge(document.getElementById('chart_div2'));
+
+			chart.draw(data, options);
+
+			setInterval(function() {
+			  data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+			  chart.draw(data, options);
+			}, 9999999);
+			setInterval(function() {
+			  data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+			  chart.draw(data, options);
+			}, 0);
+			setInterval(function() {
+			  data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+			  chart.draw(data, options);
+			}, 0);
+		  }
+		  function drawChart3() {
+
+			var data = google.visualization.arrayToDataTable([
+			  ['Label', 'Value'],
+			{% for recruiter in recruiters %}
+			  ['{{ recruiter.name }}', {{ recruiter.email_number }}],
+			{% endfor %}
+			]);
+
+			var options = {
+			  width: 400, height: 120,
+			  redFrom: 90, redTo: 100,
+			  yellowFrom:75, yellowTo: 90,
+			  minorTicks: 5
+			};
+
+			var chart = new google.visualization.Gauge(document.getElementById('chart_div3'));
+
+			chart.draw(data, options);
+
+			setInterval(function() {
+			  data.setValue(0, 1, 40 + Math.round(60 * Math.random()));
+			  chart.draw(data, options);
+			}, 9999999);
+			setInterval(function() {
+			  data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+			  chart.draw(data, options);
+			}, 0);
+			setInterval(function() {
+			  data.setValue(2, 1, 60 + Math.round(20 * Math.random()));
+			  chart.draw(data, options);
+			}, 0);
 		  }
 		</script>
 	</head>

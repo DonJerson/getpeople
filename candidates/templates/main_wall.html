@@ -9,10 +9,44 @@
 			<h1 class="page-header">Main Wall</h1>
 		</div>
 	</div>
-</div>	
+</div>
+<div class="row">
+	<div class="container">
+		<h4>Active recruiters in the last {{ days }} day/s</h4>
+		{% for recruiter in recruiters %}
+			<div = class="col-md-1">
+				<div class="center">
+					<a href="{% url 'rec_profile' days=days %}"><button type="submit" class="btn btn-primary btn-sm">{{ recruiter.name }}</button></a>
+				</div>
+			</div>
+			<div = class="col-md-1">
+				<div class="center">
+					<a href="{% url 'rec_profile' days=days %}"><button type="submit" class="btn btn-primary btn-sm">{{ recruiter.name }}</button></a>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
 <div class="container">
-	<p>Logs metrics</p>
-	<div id="chart_div" style="width: 400px; height: 120px;"></div>
+	<div class="page-header"></div>
+	<p>Total logs created in the last {{ days }} day/s per recruiter</p>
+	<div class="row">
+		<div id="chart_div" style="width: 400px; height: 120px;">
+		</div>
+	</div>
+	<div class="page-header"></div>
+	<p>Total accepted candidates in the last {{ days }} day/s per recruiter</p>
+	<div class="row">
+		<div id="chart_div2" style="width: 400px; height: 120px;">
+		</div>
+	</div>
+	<div class="page-header"></div>
+	<p>Total emailed candidates in the last {{ days }} day/s per recruiter</p>
+	<div class="row">
+		<div id="chart_div3" style="width: 400px; height: 120px;">
+		</div>
+	</div>
 </div>
 
 

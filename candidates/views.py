@@ -27,10 +27,13 @@ def main_wall(request, days):
 	total = 0
 	for rec in recs:
 		rec.logs_number = len(rec.log_set.filter(created__gte=datetime.now()-timedelta(days=int(days))))
+		rec.email_number = len(rec.log_set.filter(created__gte=datetime.now()-timedelta(days=int(days))).filter(action="Emailed"))
+		rec.accepted_number = len(rec.log_set.filter(created__gte=datetime.now()-timedelta(days=int(days))).filter(action="Accepted"))
 		if rec.logs_number != 0:
 			updated_recs.append(rec)
 
 	block = {
+	'days':days,
 	'recruiters':updated_recs
 	#'logs':all_logs
 	}

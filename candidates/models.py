@@ -66,15 +66,6 @@ class Recruiter(models.Model):
 	def __unicode__(self):
 		return self.name
 		
-	@property
-	def logs(self):
-		return self._logs
-	
-	@logs.setter
-	def logs(self, days):
-		self._logs = len(self.log_set.filter(created__gte=datetime.now()-timedelta(days=days)))
-
-	
 class LogTemplate(models.Model):
 	action = models.CharField(max_length=100)
 	priority_offset = models.IntegerField()
